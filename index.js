@@ -1,19 +1,21 @@
 const express = require('express')
 // const helmet = require('helmet')
-// const dishes = require('./routes/dish')
+const projects = require('./routes/projects')
+const actions = require('./routes/actions')
 // const ingredients = require('./routes/ingredient')
 // const recipes = require('./routes/recipe')
 
 const server = express()
 server.use(express.json())
 
-// server.use('/api/dishes', dishes)
+server.use('/api/projects', projects)
+server.use('/api/actions', actions)
 // server.use('/api/ingredients', ingredients)
 // server.use('/api/recipes', recipes)
 
 
 server.use((req, res, next) => {
-    const err = new Error("Not Found")
+    const err = new Error("Route Not Found")
     err.status = 404
     next(err)
 })
